@@ -14,7 +14,7 @@ use core::ptr::copy_nonoverlapping;
 use std::os::raw::c_uint;
 use zeroize::Zeroize;
 
-pub(crate) enum SymmetricCipherKey {
+pub enum SymmetricCipherKey {
     Aes128 { enc_key: AES_KEY, dec_key: AES_KEY },
     Aes256 { enc_key: AES_KEY, dec_key: AES_KEY },
     ChaCha20 { raw_key: ChaCha20Key },
@@ -48,7 +48,7 @@ impl Drop for SymmetricCipherKey {
 }
 
 impl SymmetricCipherKey {
-    pub(crate) fn aes128(key_bytes: &[u8]) -> Result<Self, Unspecified> {
+    pub fn aes128(key_bytes: &[u8]) -> Result<Self, Unspecified> {
         if key_bytes.len() != AES_128_KEY_LEN {
             return Err(Unspecified);
         }
@@ -128,9 +128,8 @@ impl SymmetricCipherKey {
         }
     }
 
-    #[allow(dead_code)]
     #[inline]
-    pub(crate) fn encrypt_block(&self, block: Block) -> Block {
+    pub fn encrypt_block(&self, block: Block) -> Block {
         match self {
             SymmetricCipherKey::Aes128 { enc_key, .. }
             | SymmetricCipherKey::Aes256 { enc_key, .. } => encrypt_block_aes(enc_key, block),

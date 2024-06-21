@@ -9,7 +9,7 @@
 /// for the target.
 #[repr(C)]
 #[derive(Copy, Clone)]
-pub(crate) struct Block {
+pub struct Block {
     subblocks: [u64; 2],
 }
 
