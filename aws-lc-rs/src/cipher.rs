@@ -138,7 +138,7 @@
 #![allow(clippy::module_name_repetitions)]
 
 pub(crate) mod aes;
-pub(crate) mod block;
+pub mod block;
 pub(crate) mod chacha;
 pub mod key;
 mod padded;
