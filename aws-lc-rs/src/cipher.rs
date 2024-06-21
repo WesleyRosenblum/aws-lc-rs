@@ -140,7 +140,7 @@
 pub(crate) mod aes;
 pub(crate) mod block;
 pub(crate) mod chacha;
-pub(crate) mod key;
+pub mod key;
 mod padded;
 
 pub use padded::{PaddedBlockDecryptingKey, PaddedBlockEncryptingKey};
